@@ -1,0 +1,15 @@
+# c4timer 运行依赖
+#
+# 安装：python -m pip install -r requirements.txt
+#
+# 实测环境：Windows 10/11 + Python 3.12（语法下限约 3.9，未在更低版本验证）
+# 本项目是 Windows 专用：WASAPI 环回采集、tkinter 色键透明窗、命名互斥体都用 Win32 API。
+
+# 唯一必需依赖：音频指纹与频带分析
+numpy>=1.24
+
+# 可选依赖：只有两个"截图/样品"工具需要（产品运行不需要）
+#   tools/shot_hud.py    出 HUD 状态截图
+#   tools/mock_panel.py  HUD 面板样式样品
+# 需要时手工安装：python -m pip install "Pillow>=9"
+# Pillow>=9

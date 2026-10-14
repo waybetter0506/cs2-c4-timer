@@ -1,0 +1,16 @@
+# 启动器与 GSI 配置**必须**是 CRLF：cmd.exe 解析 LF-only 的 .bat 会吃掉行首字符（实测踩过）。
+#
+# 这里用 `-text` 而不是 `text eol=crlf`：
+#   `text eol=crlf` 会把 CRLF 规范化成 LF 存进对象库、只在 checkout 时还原 CRLF。
+#   但 GitHub 的 "Download ZIP"/Source 归档不保证走 checkout 那条路，
+#   拿到 LF-only 的 .bat 就是坏的。`-text` 表示"一个字都别动"，
+#   工作区是 CRLF，对象库里就存 CRLF，从哪条路取都是 CRLF。
+#   （tools/package_release.py 与 tools/make_release_zip.py 里还各有一道强制规范化，
+#    防止有人在别的机器上把工作区改成 LF。）
+*.bat  -text
+*.cmd  -text
+*.cfg  -text
+*.ps1  -text
+
+# 回归基线抓包按字节冻结，不要让 git 动它的行尾
+*.jsonl -text

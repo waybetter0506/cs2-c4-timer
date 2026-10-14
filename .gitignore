@@ -1,0 +1,34 @@
+# 运行时产物（日志、截图、录音回放）—— 不进版本库
+runtime/
+sessions/
+
+# 用户本地配置：一旦生成就会把当时的默认值钉住，不该进库
+config.json
+
+# Python
+__pycache__/
+*.pyc
+
+# 音频素材与指纹：游戏播报录音是 Valve 的素材，指纹只对自己那台机器有效，
+# 换机器本来就该由程序自己"打一局 → 自动建参考"重新长出来。
+# 万一有人把 runtime/ 的路径改了、或者手工往仓库里拷了片段，这几条兜底。
+*.wav
+*.mp3
+*.flac
+*.npy
+*.npz
+*.key
+
+# 浏览器抓取残留（不是资料）。2026-09-16 修：
+# 旧写法只匹配某一个精确路径，实际文件躺在更深一层（`.edgeprofile/Default/…`）
+# 且换过目录名，于是 22.8 MB 缓存全都躲过了规则 —— 现在按名字匹配任何深度。
+**/.edgeprofile/
+**/.edgeprofile*/
+**/edge-prof-tmp/
+**/BrowserMetrics/
+*.pma
+
+# 打包产物与仓库外的历史堆放
+dist/
+build/
+_external_archive/
